@@ -9,6 +9,7 @@ const controllers = requireDir('./controllers');
  * Auth
  */
 routes
-  .post('/signup', controllers.authController.signup);
+  .post('/signup', controllers.authController.signup)
+  .post('/signin', controllers.authController.signin);
 
 module.exports = routes;
