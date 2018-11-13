@@ -6,4 +6,5 @@ module.exports = {
   port: process.env.PORT,
   modelspath: path.resolve('app', 'models'),
   authSecret: process.env.SECRET_KEY,
+  sentryDSN: process.env.SENTRY_DSN_KEY,
 };

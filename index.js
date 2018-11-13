@@ -4,6 +4,7 @@ const requireDir = require('require-dir');
 const bodyParser = require('body-parser');
 const routes = require('./app/routes');
 const settings = require('./config/settings');
+const Raven = require('./app/services/sentry');
 
 mongoose.connect(
   settings.db,
@@ -16,6 +17,10 @@ requireDir(settings.modelspath);
 
 app.use(bodyParser.json());
 
+app.use(Raven.requestHandler());
+
 app.use('/api', routes);
+
+app.use(Raven.errorHandler());
 
 app.listen(settings.port, () => { console.log(`Server is running on port ${settings.port}`); });
