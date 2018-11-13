@@ -19,12 +19,27 @@ routes
  * Auth routes
  */
 
-routes.use('/tweets', authMiddleware);
+routes.use(authMiddleware);
 
 routes
   .get('/tweets', (req, res) => {
     console.log(req.userId);
     res.send('ok');
   });
+
+/**
+ * ===========
+ * Users
+ */
+routes
+  .put('/users', controllers.userController.update);
+
+/**
+ * ===========
+ * Tweets
+ */
+routes
+  .post('/tweets', controllers.tweetController.create)
+  .delete('/tweets/:id', controllers.tweetController.destroy);
 
 module.exports = routes;
