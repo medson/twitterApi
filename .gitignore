@@ -62,3 +62,4 @@ typings/
 
 #others
 package-lock.json
+.vscode/

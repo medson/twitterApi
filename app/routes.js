@@ -32,7 +32,16 @@ routes
  * Users
  */
 routes
+  .get('/users', controllers.userController.index)
   .put('/users', controllers.userController.update);
+
+/**
+ * ===========
+ * Follows
+ */
+routes
+  .post('/follow/:id', controllers.followController.create)
+  .delete('/unfollow/:id', controllers.followController.destroy);
 
 /**
  * ===========
@@ -41,5 +50,12 @@ routes
 routes
   .post('/tweets', controllers.tweetController.create)
   .delete('/tweets/:id', controllers.tweetController.destroy);
+
+/**
+ * ==========
+ * Likes
+ */
+routes
+  .post('/likes/:id', controllers.likeController.toggle);
 
 module.exports = routes;

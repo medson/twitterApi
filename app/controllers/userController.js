@@ -1,6 +1,16 @@
 const User = require('../models/user');
 
 module.exports = {
+  async index(req, res, next) {
+    try {
+      const users = await User.find({});
+
+      return res.status(200).json(users);
+    } catch (err) {
+      return next(err);
+    }
+  },
+
   async update(req, res, next) {
     try {
       const id = req.userId;
