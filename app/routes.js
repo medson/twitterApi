@@ -19,12 +19,43 @@ routes
  * Auth routes
  */
 
-routes.use('/tweets', authMiddleware);
+routes.use(authMiddleware);
 
 routes
   .get('/tweets', (req, res) => {
     console.log(req.userId);
     res.send('ok');
   });
+
+/**
+ * ===========
+ * Users
+ */
+routes
+  .get('/users', controllers.userController.index)
+  .put('/users', controllers.userController.update);
+
+/**
+ * ===========
+ * Follows
+ */
+routes
+  .post('/follow/:id', controllers.followController.create)
+  .delete('/unfollow/:id', controllers.followController.destroy);
+
+/**
+ * ===========
+ * Tweets
+ */
+routes
+  .post('/tweets', controllers.tweetController.create)
+  .delete('/tweets/:id', controllers.tweetController.destroy);
+
+/**
+ * ==========
+ * Likes
+ */
+routes
+  .post('/likes/:id', controllers.likeController.toggle);
 
 module.exports = routes;
