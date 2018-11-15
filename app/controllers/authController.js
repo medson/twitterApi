@@ -33,7 +33,7 @@ module.exports = {
 
       // sendmail confirmation
       sendMail({
-        from: 'Medson Mendes  <elrolky@rocketseat.com>',
+        from: 'Medson  <medson@twitter.com>',
         to: user.email,
         subject: `Bem vindo ao twitter bootcamp, ${user.name}`,
         template: 'auth/register',
