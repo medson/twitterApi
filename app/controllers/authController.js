@@ -31,11 +31,16 @@ module.exports = {
 
       const user = await User.create(req.body);
 
-      await sendMail({
-        from: 'Medson Mendes  <elrolky@gmail.com>',
+      // sendmail confirmation
+      sendMail({
+        from: 'Medson Mendes  <elrolky@rocketseat.com>',
         to: user.email,
         subject: `Bem vindo ao twitter bootcamp, ${user.name}`,
-        html: 'Seja bem vindo ao Twitter bootcamp, faça login com sua conta.',
+        template: 'auth/register',
+        context: {
+          name: user.name,
+          username: user.username,
+        },
       });
 
       return res.status(201).json({ user, token: user.generateToken() });
