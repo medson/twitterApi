@@ -21,18 +21,14 @@ routes
 
 routes.use(authMiddleware);
 
-routes
-  .get('/tweets', (req, res) => {
-    console.log(req.userId);
-    res.send('ok');
-  });
-
 /**
  * ===========
  * Users
  */
 routes
   .get('/users', controllers.userController.index)
+  .get('/users/me', controllers.userController.me)
+  .get('/users/feed', controllers.userController.feed)
   .put('/users', controllers.userController.update);
 
 /**

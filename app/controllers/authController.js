@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const sendMail = require('../services/mailer');
 
 module.exports = {
   async signin(req, res, next) {
@@ -29,6 +30,19 @@ module.exports = {
       }
 
       const user = await User.create(req.body);
+
+      // sendmail confirmation
+      sendMail({
+        from: 'Medson  <medson@twitter.com>',
+        to: user.email,
+        subject: `Bem vindo ao twitter bootcamp, ${user.name}`,
+        template: 'auth/register',
+        context: {
+          name: user.name,
+          username: user.username,
+        },
+      });
+
       return res.status(201).json({ user, token: user.generateToken() });
     } catch (err) {
       return next(err);
