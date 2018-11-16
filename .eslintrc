@@ -4,10 +4,10 @@
     "mocha": true
   },
   "plugins": [
-    "chai-friendy"
+    "chai-friendly"
   ],
   "rules": {
-    "no-unnused-expressions": 0,
+    "no-unused-expressions": 0,
     "chai-friendly/no-unused-expressions": 2
   }
 }

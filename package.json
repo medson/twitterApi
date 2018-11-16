@@ -4,7 +4,7 @@
   "description": "twitterApi made in rocketseat bootcamp",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha __tests__/**/*.test.js"
+    "test": "NODE_ENV=test mocha __tests__/**/*.test.js --exit"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,8 @@
     "express": "^4.16.4",
     "handlebars": "^4.0.12",
     "html-to-text": "^4.0.0",
-    "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.3.11",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.3.12",
     "nodemailer": "^4.6.8",
     "raven": "^2.6.4",
     "require-dir": "^1.1.0"

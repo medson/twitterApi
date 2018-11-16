@@ -13,7 +13,7 @@ const settings = require('./config/settings');
 const Raven = require('./app/services/sentry');
 
 mongoose.connect(
-  'mongodb://tester:test123@ds037087.mlab.com:37087/twitter_api_test',
+  settings.db,
   {
     useCreateIndex: true,
     useNewUrlParser: true,
