@@ -16,6 +16,7 @@ module.exports = {
 
       return res.json({ user, token: user.generateToken() });
     } catch (err) {
+    /* instabul ignore next */
       return next(err);
     }
   },
@@ -41,35 +42,8 @@ module.exports = {
 
       return res.status(201).json({ user, token: user.generateToken() });
     } catch (err) {
+    /* instabul ignore next */
       return next(err);
     }
   },
-
-  // async signup(req, res, next) {
-  //   try {
-  //     console.log(req.body)
-  //     const { email, username } = req.body;
-  //     if (await User.findOne({ $or: [{ email }, { username }] })) {
-  //       return res.status(400).json({ error: 'User already exists' });
-  //     }
-
-  //     const user = await User.create(req.body);
-  //     console.log(user)
-  //     // sendmail confirmation
-  //     sendMail({
-  //       from: 'Medson  <medson@twitter.com>',
-  //       to: user.email,
-  //       subject: `Bem vindo ao twitter bootcamp, ${user.name}`,
-  //       template: 'auth/register',
-  //       context: {
-  //         name: user.name,
-  //         username: user.username,
-  //       },
-  //     });
-
-  //     return res.status(201).json({ user, token: user.generateToken() });
-  //   } catch (err) {
-  //     return next(err);
-  //   }
-  // },
 };

@@ -4,7 +4,7 @@
   "description": "twitterApi made in rocketseat bootcamp",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha __tests__/**/*.test.js --exit"
+    "test": "NODE_ENV=test nyc mocha __tests__/**/*.test.js --exit"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,16 @@
     "factory-girl": "^5.0.3",
     "faker": "^4.1.0",
     "mocha": "^5.2.0",
+    "node-mocks-http": "^1.7.3",
+    "nyc": "^13.1.0",
     "sinon": "^7.1.1"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text-summary",
+      "html"
+    ],
+    "report-dir": "./__tests__/coverage"
   }
 }
