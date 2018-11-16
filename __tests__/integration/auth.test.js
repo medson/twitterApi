@@ -17,6 +17,32 @@ describe('Authentication', () => {
     await User.remove({});
   });
 
+  describe('Sign up', () => {
+    it('it should be able to sign up', async () => {
+      const user = await factory.attrs('User');
+
+      const response = await chai.request(app)
+        .post('/api/signup')
+        .send(user);
+
+      expect(response.body).to.have.property('user');
+      expect(response.body).to.have.property('token');
+    });
+    it('it should not to be able to sign up with duplicates', async () => {
+      const user = await factory.create('User');
+      const user2 = await factory.attrs('User', {
+        email: user.email,
+      });
+
+      const response = await chai.request(app)
+        .post('/api/signup')
+        .send(user2);
+
+      expect(response).to.have.status(400);
+      expect(response.body).to.have.property('error');
+    });
+  });
+
   describe('Sign in ', () => {
     it('it should be able to authenticate with valid credentials', async () => {
       const user = await factory.create('User', {
