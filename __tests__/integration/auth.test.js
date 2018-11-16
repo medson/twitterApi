@@ -6,6 +6,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 const app = require('../../index');
+const factory = require('../factories');
 
 const User = require('../../app/models/user');
 
@@ -18,12 +19,15 @@ describe('Authentication', () => {
 
   describe('Sign in ', () => {
     it('it should be able to authenticate with valid credentials', async () => {
-      const user = await User.create({
-        name: 'Medson Mendes',
-        username: 'lmedson',
-        email: 'medson@twitter.com',
+      const user = await factory.create('User', {
         password: '123456',
       });
+      // const user = await User.create({
+      //   name: 'Medson Mendes',
+      //   username: 'lmedson',
+      //   email: 'medson@twitter.com',
+      //   password: '123456',
+      // });
 
       const response = await chai.request(app)
         .post('/api/signin')
@@ -43,12 +47,15 @@ describe('Authentication', () => {
     });
 
     it('it should not be able to authenticate with invalid credentials', async () => {
-      const user = await User.create({
-        name: 'Medson Mendes',
-        username: 'lmedson',
-        email: 'medson@twitter.com',
+      const user = await factory.create('User', {
         password: '123456',
       });
+      // const user = await User.create({
+      //   name: 'Medson Mendes',
+      //   username: 'lmedson',
+      //   email: 'medson@twitter.com',
+      //   password: '123456',
+      // });
 
       const response = await chai.request(app)
         .post('/api/signin')
@@ -59,27 +66,3 @@ describe('Authentication', () => {
     });
   });
 });
-
-// describe('Authentication', () => {
-//   beforeEach(async () => {
-//     await User.remove();
-//   })
-
-//   describe('Sign in', () => {
-//     it('it should be able to authenticate with valid credentials', async () => {
-//       const user = await User.create({
-//         name: 'yugi',
-//         username: 'yugioh',
-//         email: 'yugi@yami.com',
-//         password: '123456',
-//       });
-
-//       const response = await chai.request(app)
-//         .post('/api/signin')
-//         .send({ email: user.email, password: '123456' });
-
-//         expect(response.body).to.have.property('user');
-//         expect(response.body).to.have.property('token');
-//     });
-//   });
-// });
