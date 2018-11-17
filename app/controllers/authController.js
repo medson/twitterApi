@@ -5,9 +5,7 @@ module.exports = {
   async signin(req, res, next) {
     try {
       const { email, password } = req.body;
-
       const user = await User.findOne({ email });
-
       if (!user) { // check if user exists
         return res.status(400).json({ error: 'User not found' });
       }
@@ -18,10 +16,10 @@ module.exports = {
 
       return res.json({ user, token: user.generateToken() });
     } catch (err) {
+    /* instabul ignore next */
       return next(err);
     }
   },
-
   async signup(req, res, next) {
     try {
       const { email, username } = req.body;
@@ -30,7 +28,6 @@ module.exports = {
       }
 
       const user = await User.create(req.body);
-
       // sendmail confirmation
       sendMail({
         from: 'Medson  <medson@twitter.com>',
@@ -45,6 +42,7 @@ module.exports = {
 
       return res.status(201).json({ user, token: user.generateToken() });
     } catch (err) {
+    /* instabul ignore next */
       return next(err);
     }
   },

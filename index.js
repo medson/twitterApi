@@ -1,3 +1,11 @@
+// const envPath = process.env.NODE_ENV
+//   ? `.env.${process.env.NODE_ENV}`
+//   : '.env';
+
+// require('dotenv').config({ path: envPath });
+
+require('dotenv').config();
+
 const app = require('express')();
 const mongoose = require('mongoose');
 const requireDir = require('require-dir');
@@ -24,3 +32,5 @@ app.use('/api', routes);
 app.use(Raven.errorHandler());
 
 app.listen(settings.port, () => { console.log(`Server is running on port ${settings.port}`); });
+
+module.exports = app;

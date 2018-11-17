@@ -12,13 +12,13 @@ module.exports = async (req, res, next) => {
   const parts = authHeader.split(' ');
 
   if (!parts.lenth === 2) {
-    return res.status(400).json({ error: 'Token error' });
+    return res.status(401).json({ error: 'Token error' });
   }
 
   const [scheme, token] = parts;
 
   if (scheme !== 'Bearer') {
-    return res.status(400).json({ error: 'Token malformatted' });
+    return res.status(401).json({ error: 'Token malformatted' });
   }
 
   try {
@@ -27,6 +27,6 @@ module.exports = async (req, res, next) => {
 
     return next();
   } catch (err) {
-    return next(err);
+    return res.status(401).json({ error: 'Token invalid' });
   }
 };
