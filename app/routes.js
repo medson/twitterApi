@@ -10,6 +10,7 @@ const controllers = requireDir('./controllers');
 /**
  * Auth
  */
+routes.get('/teste2', (req, res) => res.send('Hello world!'));
 routes.post('/signup', controllers.authController.signup);
 routes.post('/signin', controllers.authController.signin);
 
