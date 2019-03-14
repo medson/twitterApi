@@ -57,12 +57,6 @@ describe('Authentication', () => {
       const user = await factory.create('User', {
         password: '123456',
       });
-      // const user = await User.create({
-      //   name: 'Medson Mendes',
-      //   username: 'lmedson',
-      //   email: 'medson@twitter.com',
-      //   password: '123456',
-      // });
 
       const response = await chai.request(app)
         .post('/api/signin')
@@ -85,12 +79,6 @@ describe('Authentication', () => {
       const user = await factory.create('User', {
         password: '123456',
       });
-      // const user = await User.create({
-      //   name: 'Medson Mendes',
-      //   username: 'lmedson',
-      //   email: 'medson@twitter.com',
-      //   password: '123456',
-      // });
 
       const response = await chai.request(app)
         .post('/api/signin')
